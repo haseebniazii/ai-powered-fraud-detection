@@ -2,7 +2,7 @@
 // FastAPI Configuration
 // =========================================================
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://ai-powered-fraud-detection.fastapicloud.dev/";
 
 
 // =========================================================
