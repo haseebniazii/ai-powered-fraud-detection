@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AI-Powered Fraud Detection System"
+    >
+
+    <title>AI Fraud Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">🛡️</div>
+
+            <div>
+                <h1>FraudGuard AI</h1>
+                <span>AI-Powered Fraud Detection</span>
+            </div>
+        </div>
+
+        <div class="api-status">
+            <span class="status-dot"></span>
+            <span id="apiStatus">API Ready</span>
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+    <main class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                MACHINE LEARNING SECURITY
+            </div>
+
+            <h2>
+                Detect Fraud
+                <span>Before It Happens.</span>
+            </h2>
+
+            <p>
+                Enter transaction details below and our machine learning
+                model will analyze the transaction and estimate its fraud risk.
+            </p>
+
+        </section>
+
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <!-- Form Card -->
+            <div class="card form-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="section-label">TRANSACTION</span>
+                        <h3>Transaction Details</h3>
+                    </div>
+
+                    <div class="card-icon">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <form id="fraudForm">
+
+                    <!-- Transaction Information -->
+                    <div class="form-section">
+
+                        <h4>Transaction Information</h4>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label for="transaction_hour">
+                                    Transaction Hour
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="transaction_hour"
+                                    min="0"
+                                    max="23"
+                                    value="14"
+                                    required
+                                >
+
+                                <small>0 - 23</small>
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="transaction_amount">
+                                    Transaction Amount
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="transaction_amount"
+                                    min="0"
+                                    step="0.01"
+                                    value="1500"
+                                    required
+                                >
+
+                                <small>Amount of transaction</small>
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="avg_transaction_amount_30d">
+                                    30-Day Average Amount
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="avg_transaction_amount_30d"
+                                    min="0.01"
+                                    step="0.01"
+                                    value="1200"
+                                    required
+                                >
+
+                                <small>Average transaction amount</small>
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="previous_chargebacks">
+                                    Previous Chargebacks
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="previous_chargebacks"
+                                    min="0"
+                                    value="0"
+                                    required
+                                >
+
+                                <small>Previous chargeback count</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Account Information -->
+                    <div class="form-section">
+
+                        <h4>Account & Activity</h4>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label for="account_age_days">
+                                    Account Age
+                                </label>
+
+                                <div class="input-with-unit">
+                                    <input
+                                        type="number"
+                                        id="account_age_days"
+                                        min="0"
+                                        value="250"
+                                        required
+                                    >
+
+                                    <span>days</span>
+                                </div>
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="transaction_velocity_1h">
+                                    Transactions / 1 Hour
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="transaction_velocity_1h"
+                                    min="0"
+                                    value="1"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="transaction_velocity_24h">
+                                    Transactions / 24 Hours
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="transaction_velocity_24h"
+                                    min="0"
+                                    value="3"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Merchant Information -->
+                    <div class="form-section">
+
+                        <h4>Merchant & Device</h4>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label for="merchant_category">
+                                    Merchant Category
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="merchant_category"
+                                    placeholder="e.g. Electronics"
+                                    value="Electronics"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="transaction_country">
+                                    Transaction Country
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="transaction_country"
+                                    placeholder="e.g. Pakistan"
+                                    value="Pakistan"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="input-group">
+                                <label for="device_type">
+                                    Device Type
+                                </label>
+
+                                <select id="device_type" required>
+                                    <option value="Mobile">
+                                        Mobile
+                                    </option>
+
+                                    <option value="Desktop">
+                                        Desktop
+                                    </option>
+
+                                    <option value="Tablet">
+                                        Tablet
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Risk Indicators -->
+                    <div class="form-section">
+
+                        <h4>Risk Indicators</h4>
+
+                        <div class="toggle-grid">
+
+                            <label class="toggle-card">
+
+                                <input
+                                    type="checkbox"
+                                    id="is_international"
+                                >
+
+                                <div class="toggle-content">
+                                    <strong>
+                                        International Transaction
+                                    </strong>
+
+                                    <span>
+                                        Transaction is made internationally
+                                    </span>
+                                </div>
+
+                                <span class="toggle-switch">
+                                    <span></span>
+                                </span>
+
+                            </label>
+
+
+                            <label class="toggle-card">
+
+                                <input
+                                    type="checkbox"
+                                    id="is_high_risk_merchant"
+                                >
+
+                                <div class="toggle-content">
+                                    <strong>
+                                        High-Risk Merchant
+                                    </strong>
+
+                                    <span>
+                                        Merchant has elevated risk
+                                    </span>
+                                </div>
+
+                                <span class="toggle-switch">
+                                    <span></span>
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Predict Button -->
+                    <button
+                        type="submit"
+                        class="predict-btn"
+                        id="predictBtn"
+                    >
+
+                        <span class="btn-icon">✦</span>
+
+                        <span id="btnText">
+                            Analyze Transaction
+                        </span>
+
+                        <span class="btn-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Result Card -->
+            <div class="card result-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="section-label">ANALYSIS</span>
+                        <h3>Detection Result</h3>
+                    </div>
+
+                    <div class="shield-large">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <!-- Initial State -->
+                <div
+                    class="result-placeholder"
+                    id="resultPlaceholder"
+                >
+
+                    <div class="placeholder-icon">
+                        🛡️
+                    </div>
+
+                    <h4>Ready to Analyze</h4>
+
+                    <p>
+                        Submit a transaction to receive an AI-powered
+                        fraud risk assessment.
+                    </p>
+
+                    <div class="scan-line"></div>
+
+                </div>
+
+
+                <!-- Result -->
+                <div
+                    class="result-content hidden"
+                    id="resultContent"
+                >
+
+                    <div
+                        class="result-badge"
+                        id="resultBadge"
+                    >
+                        <span id="resultIcon">✓</span>
+                        <span id="resultText">LEGITIMATE</span>
+                    </div>
+
+
+                    <div class="probability-box">
+
+                        <span class="probability-label">
+                            FRAUD PROBABILITY
+                        </span>
+
+                        <div class="probability-value">
+                            <span id="fraudProbability">
+                                0.00%
+                            </span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                id="progressFill"
+                            ></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="probability-grid">
+
+                        <div class="mini-result legitimate">
+
+                            <span class="mini-icon">✓</span>
+
+                            <div>
+                                <span>
+                                    Legitimate
+                                </span>
+
+                                <strong id="legitimateProbability">
+                                    0.00%
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="mini-result fraud">
+
+                            <span class="mini-icon">!</span>
+
+                            <div>
+                                <span>
+                                    Fraud
+                                </span>
+
+                                <strong id="fraudProbabilitySmall">
+                                    0.00%
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-message" id="resultMessage">
+                        Transaction appears legitimate.
+                    </div>
+
+
+                    <button
+                        class="reset-btn"
+                        id="resetBtn"
+                        type="button"
+                    >
+                        ↻ Analyze Another Transaction
+                    </button>
+
+                </div>
+
+
+                <!-- Error -->
+                <div
+                    class="error-box hidden"
+                    id="errorBox"
+                >
+
+                    <div class="error-icon">
+                        ⚠
+                    </div>
+
+                    <h4>Unable to Analyze</h4>
+
+                    <p id="errorMessage">
+                        Something went wrong.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="retry-btn"
+                        id="retryBtn"
+                    >
+                        Try Again
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="info-section">
+
+            <div class="info-card">
+                <span class="info-number">01</span>
+
+                <div>
+                    <h4>Real-Time Analysis</h4>
+                    <p>
+                        Transaction data is sent directly to the
+                        FastAPI prediction endpoint.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <span class="info-number">02</span>
+
+                <div>
+                    <h4>Machine Learning</h4>
+                    <p>
+                        The trained fraud detection pipeline analyzes
+                        the submitted transaction.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <span class="info-number">03</span>
+
+                <div>
+                    <h4>Risk Probability</h4>
+                    <p>
+                        The system returns both fraud and legitimate
+                        probabilities.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            AI-Powered Fraud Detection
+            <span>•</span>
+            Machine Learning Project
+        </p>
+
+        <p class="footer-api">
+            API: <span>127.0.0.1:8000</span>
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
