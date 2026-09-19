@@ -4,16 +4,14 @@
 
 const API_URL = "https://ai-powered-fraud-detection.fastapicloud.dev";
 
+
 // =========================================================
 // DOM Elements
 // =========================================================
 
 const fraudForm = document.getElementById("fraudForm");
-
 const predictBtn = document.getElementById("predictBtn");
-
 const btnText = document.getElementById("btnText");
-
 const apiStatus = document.getElementById("apiStatus");
 
 const resultPlaceholder =
@@ -65,11 +63,9 @@ const resultMessage =
 
 function getNumber(id) {
 
-    const value = Number(
+    return Number(
         document.getElementById(id).value
     );
-
-    return value;
 }
 
 
@@ -159,11 +155,6 @@ function getTransactionData() {
     }
 
 
-    // Feature engineering
-    const amountRatio =
-        transactionAmount / averageAmount;
-
-
     return {
 
         transaction_hour:
@@ -200,10 +191,7 @@ function getTransactionData() {
             getNumber("transaction_velocity_24h"),
 
         avg_transaction_amount_30d:
-            averageAmount,
-
-        amount_ratio:
-            amountRatio
+            averageAmount
     };
 }
 
@@ -425,8 +413,7 @@ async function predictTransaction(data) {
     // FastAPI validation error
     if (response.status === 422) {
 
-        const errorData =
-            await response.json();
+        await response.json();
 
         throw new Error(
             "Invalid transaction data. Please check the input fields."
@@ -446,6 +433,7 @@ async function predictTransaction(data) {
                 await response.json();
 
             if (errorData.detail) {
+
                 message =
                     typeof errorData.detail === "string"
                         ? errorData.detail
@@ -453,6 +441,7 @@ async function predictTransaction(data) {
             }
 
         } catch (error) {
+
             // Ignore JSON parsing error
         }
 
