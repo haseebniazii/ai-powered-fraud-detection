@@ -2,8 +2,7 @@
 // FastAPI Configuration
 // =========================================================
 
-const API_URL = "https://ai-powered-fraud-detection.fastapicloud.dev/";
-
+const API_URL = "https://ai-powered-fraud-detection.fastapicloud.dev";
 
 // =========================================================
 // DOM Elements
